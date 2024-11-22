@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button id="addButton">Add Task</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        let tasks = [];
+
+        // Function to add task to array
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const task = taskInput.value.trim(); // Get task value and remove extra spaces
+            
+            if (task !== "") {
+                tasks.push(task); // Add task to tasks array
+                taskInput.value = ""; // Clear input field
+                updateTaskList(); // Update the displayed task list
+            } else {
+                alert("Please enter a task.");
+            }
+        }
+
+        // Function to update the task list display
+        function updateTaskList() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = ""; // Clear the list before updating
+            
+            tasks.forEach((task, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = task;
+                taskList.appendChild(listItem);
+            });
+        }
+
+        // Event listener for "Add Task" button
+        const addButton = document.getElementById('addButton');
+        addButton.addEventListener('click', addTask);
+    </script>
+</body>
+</html>
